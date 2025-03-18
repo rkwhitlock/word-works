@@ -1,17 +1,28 @@
-// server.js
-const express = require("express");
-const sqlite3 = require("sqlite3").verbose();
+import "cors";
+import "express";
+import "path";
+import "sqlite3";
+const sqlite3 = sqlite3.verbose();
 const app = express();
-const cors = require("cors");
 
-app.use(cors());
+// Configure CORS to allow requests from your Vercel domain
+const corsOptions = {
+  origin: [
+    "https://word-works-rkwhitlocks-projects.vercel.app",
+    "http://localhost:3000",
+    "http://localhost:5173",
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
+// Serve static files if available
 app.use(express.static(path.join(__dirname, "build")));
 
 const db = new sqlite3.Database("./database.db");
-const API_URL =
-  process.env.API_URL || "https://word-works-production.up.railway.app/";
 const PORT = process.env.PORT || 8080;
 
 app.get("/api/words", (req, res) => {
@@ -37,6 +48,7 @@ app.get("/api/words", (req, res) => {
     res.json(wordsByDifficulty);
   });
 });
+
 app.get("/api/words/:difficulty", (req, res) => {
   const { difficulty } = req.params;
   const selectQuery = `
@@ -52,9 +64,6 @@ app.get("/api/words/:difficulty", (req, res) => {
     const words = [];
 
     rows.forEach((row) => {
-      if (!words[row.difficulty]) {
-        words[row.difficulty] = [];
-      }
       words.push(row.word);
     });
 
@@ -62,11 +71,9 @@ app.get("/api/words/:difficulty", (req, res) => {
   });
 });
 
-// Add a new word
 app.post("/api/words", (req, res) => {
-  console.log("SDKJFLKDS", req.body);
+  console.log("Request body:", req.body);
   const { word, difficulty } = req.body;
-  console.log("????");
 
   if (!word || !difficulty) {
     return res.status(400).json({ error: "Word and difficulty are required" });
@@ -86,7 +93,6 @@ app.post("/api/words", (req, res) => {
   });
 });
 
-// Update an existing word
 app.put("/api/words", (req, res) => {
   const { oldWord, newWord, difficulty } = req.body;
 
@@ -114,7 +120,6 @@ app.put("/api/words", (req, res) => {
   });
 });
 
-// Delete a word
 app.delete("/api/words", (req, res) => {
   const { word, difficulty } = req.body;
 
@@ -140,6 +145,12 @@ app.delete("/api/words", (req, res) => {
   });
 });
 
-app.listen(() => {
-  console.log(`Server is running on ${API_URL}${PORT}`);
+// Catch-all route to serve the frontend
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+
+// Fixed app.listen() call
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

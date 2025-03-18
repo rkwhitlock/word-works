@@ -8,7 +8,7 @@ const Words = () => {
   const [error, setError] = useState(null);
 
   const API_URL =
-    process.env.API_URL || "https://word-works-production.up.railway.app/";
+    process.env.API_URL || "https://word-works-production.up.railway.app";
 
   useEffect(() => {
     axios

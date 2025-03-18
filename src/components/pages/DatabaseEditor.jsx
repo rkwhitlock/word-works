@@ -14,7 +14,7 @@ const DatabaseEditor = ({ onLogout }) => {
   const [error, setError] = useState("");
 
   const API_URL =
-    process.env.API_URL || "https://word-works-production.up.railway.app/";
+    process.env.API_URL || "https://word-works-production.up.railway.app";
 
   // Fetch all words on component mount
   useEffect(() => {
