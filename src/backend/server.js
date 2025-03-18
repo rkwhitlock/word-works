@@ -1,18 +1,12 @@
 import cors from "cors";
 import express from "express";
-import path from "path";
 import sqlite3 from "sqlite3";
-import { fileURLToPath } from "url";
-
-// Get __dirname equivalent in ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const app = express();
 const db = new sqlite3.Database("./database.db");
 const PORT = process.env.PORT || 8080;
 
-// Configure CORS to allow requests from your Vercel domain
+// Configure CORS to allow requests from your Vercel frontend
 const corsOptions = {
   origin: [
     "https://word-works-rkwhitlocks-projects.vercel.app",
@@ -26,9 +20,12 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-// Serve static files if available
-app.use(express.static(path.join(__dirname, "build")));
+// Initialize database
+app.get("/", (req, res) => {
+  res.json({ message: "API server running" });
+});
 
+// API endpoints
 app.get("/api/words", (req, res) => {
   const selectQuery = `
     SELECT word, difficulty FROM words
@@ -149,12 +146,7 @@ app.delete("/api/words", (req, res) => {
   });
 });
 
-// Catch-all route to serve the frontend
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
-
-// Fixed app.listen() call
+// Start server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
