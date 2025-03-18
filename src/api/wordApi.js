@@ -1,10 +1,10 @@
 import axios from "axios";
 
-export const fetchWords = async (level) => {
+export const fetchWords = async (difficulty) => {
+  const API_URL =
+    process.env.API_URL || "https://word-works-production.up.railway.app";
   try {
-    const response = await axios.get(
-      `http://word-works-production.up.railway.app/api/words/${level}`
-    );
+    const response = await axios.get(`${API_URL}/api/words/${difficulty}`);
     console.log("Fetched words:", response.data);
     return response.data;
   } catch (error) {
