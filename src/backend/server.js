@@ -1,9 +1,16 @@
-import "cors";
-import "express";
-import "path";
-import "sqlite3";
-const sqlite3 = sqlite3.verbose();
+import cors from "cors";
+import express from "express";
+import path from "path";
+import sqlite3 from "sqlite3";
+import { fileURLToPath } from "url";
+
+// Get __dirname equivalent in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
+const db = new sqlite3.Database("./database.db");
+const PORT = process.env.PORT || 8080;
 
 // Configure CORS to allow requests from your Vercel domain
 const corsOptions = {
@@ -21,9 +28,6 @@ app.use(express.json());
 
 // Serve static files if available
 app.use(express.static(path.join(__dirname, "build")));
-
-const db = new sqlite3.Database("./database.db");
-const PORT = process.env.PORT || 8080;
 
 app.get("/api/words", (req, res) => {
   const selectQuery = `
