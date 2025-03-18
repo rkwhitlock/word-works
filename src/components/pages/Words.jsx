@@ -7,7 +7,8 @@ const Words = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const API_URL = process.env.API_URL;
+  const API_URL =
+    process.env.API_URL || "https://word-works-production.up.railway.app/";
 
   useEffect(() => {
     axios

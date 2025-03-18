@@ -13,7 +13,8 @@ const DatabaseEditor = ({ onLogout }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const API_URL = process.env.API_URL;
+  const API_URL =
+    process.env.API_URL || "https://word-works-production.up.railway.app/";
 
   // Fetch all words on component mount
   useEffect(() => {

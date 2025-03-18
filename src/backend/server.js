@@ -10,7 +10,8 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "build")));
 
 const db = new sqlite3.Database("./database.db");
-const API_URL = process.env.API_URL;
+const API_URL =
+  process.env.API_URL || "https://word-works-production.up.railway.app/";
 const PORT = process.env.PORT || 8080;
 
 app.get("/api/words", (req, res) => {
