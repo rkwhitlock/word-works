@@ -15,6 +15,7 @@ const corsOptions = {
     "http://localhost:5173",
     "https://rkwhitlock.github.io/word-works/",
     "https://word-works-rkwhitlocks-projects.vercel.app",
+    "https://rkwhitlock.github.io",
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true, // Allow credentials (if using cookies/auth)

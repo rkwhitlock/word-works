@@ -5,5 +5,5 @@ import { defineConfig } from "vite";
 // https://vite.dev/config/
 export default defineConfig(async () => ({
   plugins: [react(), tailwindcss()],
-  base: "/",
+  base: "/word-works/",
 }));
