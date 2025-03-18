@@ -7,8 +7,6 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 
-const port = 5001;
-
 const db = new sqlite3.Database("./database.db");
 
 app.get("/api/words", (req, res) => {
@@ -137,6 +135,6 @@ app.delete("/api/words", (req, res) => {
   });
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+app.listen(() => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
