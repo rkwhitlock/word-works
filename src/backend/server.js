@@ -6,17 +6,19 @@ const app = express();
 const db = new sqlite3.Database("./database.db");
 const PORT = process.env.PORT || 8080;
 
+// Update the allowed origins
 const corsOptions = {
   origin: [
-    "https://word-works-rkwhitlocks-projects.vercel.app",
-    "https://word-works-production.up.railway.app", // Ensure HTTPS here
+    "https://word-works-six.vercel.app", // Use your deployed frontend URL
+    "https://word-works-production.up.railway.app", // If needed for testing
     "http://localhost:3000",
     "http://localhost:5173",
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  credentials: true,
+  credentials: true, // Allow credentials (if using cookies/auth)
 };
 
+// Apply the updated CORS configuration
 app.use(cors(corsOptions));
 app.use(express.json());
 
