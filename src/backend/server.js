@@ -6,10 +6,10 @@ const app = express();
 const db = new sqlite3.Database("./database.db");
 const PORT = process.env.PORT || 8080;
 
-// Configure CORS to allow requests from your Vercel frontend
 const corsOptions = {
   origin: [
     "https://word-works-rkwhitlocks-projects.vercel.app",
+    "https://word-works-production.up.railway.app", // Ensure HTTPS here
     "http://localhost:3000",
     "http://localhost:5173",
   ],
