@@ -13,7 +13,7 @@ const DatabaseEditor = ({ onLogout }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const API_URL = "http://localhost:5001";
+  const API_URL = process.env.API_URL;
 
   // Fetch all words on component mount
   useEffect(() => {
@@ -63,7 +63,7 @@ const DatabaseEditor = ({ onLogout }) => {
       setStatus("Adding word...");
       // Replace with your API endpoint for adding words
       await axios.post(
-        `http://localhost:5001/api/words`,
+        `API_URL/api/words`,
         {
           word: word,
           difficulty: difficulty,

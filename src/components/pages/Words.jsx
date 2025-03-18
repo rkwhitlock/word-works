@@ -7,9 +7,11 @@ const Words = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const API_URL = process.env.API_URL;
+
   useEffect(() => {
     axios
-      .get("http://localhost:5001/api/words")
+      .get("API_URL/api/words")
       .then((response) => {
         setWordGroups(response.data);
         setLoading(false);

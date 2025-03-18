@@ -3,7 +3,7 @@ import axios from "axios";
 export const fetchWords = async (level) => {
   try {
     const response = await axios.get(
-      `http://localhost:5001/api/words/${level}`
+      `http://word-works-production.up.railway.app/api/words/${level}`
     );
     console.log("Fetched words:", response.data);
     return response.data;
