@@ -5,13 +5,14 @@
   "type": "module",
   "homepage": "https://rkwhitlock.github.io/word-works",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "start": "node src/backend/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "gh-pages -d build"
+    "predeploy" : "npm run build",
+    "deploy" : "gh-pages -d dist",
+    "dev": "vite",
+    "build": "vite build"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.14",
