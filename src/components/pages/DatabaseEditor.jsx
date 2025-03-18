@@ -63,7 +63,7 @@ const DatabaseEditor = ({ onLogout }) => {
       setStatus("Adding word...");
       // Replace with your API endpoint for adding words
       await axios.post(
-        `API_URL/api/words`,
+        `${API_URL}/api/words`,
         {
           word: word,
           difficulty: difficulty,

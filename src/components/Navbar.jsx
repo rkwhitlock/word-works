@@ -1,5 +1,5 @@
-import { FaHome } from "react-icons/fa"; // Importing the Home icon from react-icons
 import { Link } from "react-router-dom";
+import ReeseImg from "../assets/reese.png";
 
 export default function Navbar() {
   return (
@@ -10,9 +10,11 @@ export default function Navbar() {
           to="/"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
-          <FaHome className="text-3xl cursor-pointer hover:text-blue-300 transition duration-200 text-white" />
+          <img src={ReeseImg} className="h-16 pr-2" />
         </Link>
-        <span className="ml-2 text-2xl font-bold">Word Works by Reese!</span>
+        <span className="ml-2 text-2xl font-bold">
+          Word Works by Ms. Reese!
+        </span>
       </div>
       <div>
         {/* Other navbar links/buttons */}

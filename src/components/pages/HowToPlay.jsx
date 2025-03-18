@@ -15,7 +15,7 @@ const HowToPlayScreen = () => {
           <img
             src={backButtonImage}
             alt="Back"
-            className="w-20 cursor-pointer hover:opacity-80 transition-opacity absolute top-24 left-6"
+            className="w-20 cursor-pointer hover:opacity-80 transition-opacity absolute top-30 left-6"
           />
         </Link>
 

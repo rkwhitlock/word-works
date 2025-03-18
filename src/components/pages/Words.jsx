@@ -11,7 +11,7 @@ const Words = () => {
 
   useEffect(() => {
     axios
-      .get("API_URL/api/words")
+      .get(`${API_URL}/api/words`)
       .then((response) => {
         setWordGroups(response.data);
         setLoading(false);
