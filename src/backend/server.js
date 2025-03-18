@@ -13,6 +13,7 @@ const corsOptions = {
     "https://word-works-production.up.railway.app", // If needed for testing
     "http://localhost:3000",
     "http://localhost:5173",
+    "https://rkwhitlock.github.io/word-works/",
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true, // Allow credentials (if using cookies/auth)
@@ -42,7 +43,7 @@ app.get("/api/words", (req, res) => {
     const wordsByDifficulty = {};
 
     rows.forEach((row) => {
-      if (!wordsByDifficulty[row.difficulty]) {
+      if (!wordsByDifficulty[row.difficulty] && row.word) {
         wordsByDifficulty[row.difficulty] = [];
       }
       wordsByDifficulty[row.difficulty].push(row.word);
